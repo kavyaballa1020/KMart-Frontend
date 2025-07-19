@@ -1,0 +1,48 @@
+/* Home.css */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #e0f7fa, #ffffff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+.home-container h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.home-container p {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.role-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.role-links a {
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.role-links a:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+}

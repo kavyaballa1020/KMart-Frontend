@@ -1,0 +1,50 @@
+/* VendorRegister.css */
+
+.vendor-register-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 80px auto;
+    padding: 35px 30px;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.vendor-register-container h2 {
+    margin-bottom: 25px;
+    color: #222;
+    font-size: 24px;
+}
+
+.vendor-register-container input {
+    width: 90%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.vendor-register-container input:focus {
+    border-color: #007bff;
+}
+
+.vendor-register-container button {
+    width: 95%;
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.vendor-register-container button:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,34 @@
+.dashboard-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    background-color: #f7f9fc;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container h1 {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.dashboard-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-container button:hover {
+    background-color: #357ab8;
+}
+
+a {
+    text-decoration: none;
+}
