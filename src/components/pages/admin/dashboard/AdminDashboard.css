@@ -170,7 +170,25 @@ button.add-btn {
 button.add-btn:hover {
     background-color: #2563eb;
 }
+.vendor-approval-section {
+    margin-top: 3rem;
+}
 
+.vendor-cards {
+    display: grid;
+    gap: 1rem;
+}
+
+.vendor-card {
+    padding: 1rem;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.vendor-buttons button {
+    margin-right: 0.5rem;
+}
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .input-group {
@@ -199,4 +217,24 @@ button.add-btn:hover {
     .sub-buttons {
         margin-top: 6px;
     }
+    .vendor-approval-section {
+  margin-top: 3rem;
+}
+
+.vendor-cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.vendor-card {
+  padding: 1rem;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.vendor-buttons button {
+  margin-right: 0.5rem;
+}
+
 }

@@ -1,23 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Login Components
-import UserLogin from './components/login/UserLogin.jsx';
-import AdminLogin from './components/login/AdminLogin.jsx';
-import VendorLogin from './components/login/VendorLogin.jsx';
+import UserLogin from './components/pages/user/authentication/UserLogin.jsx';
+import AdminLogin from './components/pages/admin/authentication/AdminLogin.jsx';
+import VendorLogin from './components/pages/vendor/authentication/VendorLogin.jsx';
 
 // Register Components
-import UserRegister from './components/register/UserRegister.jsx';
-import AdminRegister from './components/register/AdminRegister.jsx';
-import VendorRegister from './components/register/VendorRegister.jsx';
+import UserRegister from './components/pages/user/authentication/UserRegister.jsx';
+import AdminRegister from './components/pages/admin/authentication/AdminRegister.jsx';
+import VendorRegister from './components/pages/vendor/authentication/VendorRegister.jsx';
 
 // Dashboard Components
-import UserDashboard from './components/dashboard/UserDashboard.jsx';
-import AdminDashboard from './components/dashboard/AdminDashboard.jsx';
-import VendorDashboard from './components/dashboard/VendorDashboard.jsx';
+import UserDashboard from './components/pages/user/dashboard/UserDashboard.jsx';
+import AdminDashboard from './components/pages/admin/dashboard/AdminDashboard.jsx';
+import VendorDashboard from './components/pages/vendor/dashboard/VendorDashboard.jsx';
 
 import Home from './components/Home.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
-import UserProfile from './components/profile/UserProfile.jsx';
+import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
 
 
 function App() {
