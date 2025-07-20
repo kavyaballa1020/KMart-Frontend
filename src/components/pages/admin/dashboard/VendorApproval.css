@@ -1,0 +1,225 @@
+/* Main Container */
+.vendor-approval-container {
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Page Title */
+.vendor-approval-container h3 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.vendor-approval-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 2px;
+}
+
+/* Grid Layout */
+.vendor-cards {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Compact Vendor Card */
+.vendor-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #3b82f6;
+    padding: 1.25rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+
+/* Vendor Info Text */
+.vendor-card p {
+    margin: 0.5rem 0;
+    color: #374151;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+}
+
+.vendor-card p strong {
+    color: #1f2937;
+    font-weight: 600;
+    min-width: 100px;
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.vendor-card p:first-of-type {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.vendor-card p:first-of-type strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: none;
+}
+
+/* Action Buttons */
+.vendor-buttons {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.vendor-buttons button {
+    flex: 1;
+    padding: 0.65rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Button Hover Shine */
+.vendor-buttons button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.vendor-buttons button:hover::before {
+    left: 100%;
+}
+
+/* Approve Button */
+.vendor-buttons button:first-child {
+    background: linear-gradient(135deg, #059669, #047857);
+    color: white;
+    border-color: #059669;
+    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+}
+
+.vendor-buttons button:first-child:hover {
+    background: linear-gradient(135deg, #047857, #065f46);
+}
+
+/* Reject Button */
+.vendor-buttons button:last-child {
+    background: white;
+    color: #dc2626;
+    border: 2px solid #dc2626;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15);
+}
+
+.vendor-buttons button:last-child:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+}
+
+/* Empty State */
+.vendor-approval-container>p {
+    text-align: center;
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    color: #6b7280;
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 2rem auto;
+}
+
+.vendor-approval-container>p::before {
+    content: '📋';
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.6;
+}
+
+/* Loading Card */
+.vendor-card.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .vendor-buttons {
+        flex-direction: column;
+    }
+
+    .vendor-buttons button {
+        width: 100%;
+    }
+
+    .vendor-card p {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vendor-card p strong {
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .vendor-approval-container {
+        background: white;
+        padding: 1rem;
+    }
+
+    .vendor-card {
+        box-shadow: none;
+        border: 1px solid #000;
+        margin-bottom: 1.5rem;
+        break-inside: avoid;
+    }
+
+    .vendor-buttons {
+        display: none;
+    }
+}

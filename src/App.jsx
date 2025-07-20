@@ -18,7 +18,8 @@ import VendorDashboard from './components/pages/vendor/dashboard/VendorDashboard
 import Home from './components/Home.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
-
+import VendorApproval from './components/pages/admin/dashboard/VendorApproval.jsx';
+import CategoryManagement from './components/pages/admin/dashboard/CategoryManagement.jsx'; // Uncomment when ready
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/dashboard/user/profile" element={<UserProfile />} />
 
         {/* Admin Routes */}
         <Route path="/login/admin" element={<AdminLogin />} />
@@ -49,7 +51,11 @@ function App() {
               <AdminDashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          {/* Nested Routes inside Admin Dashboard */}
+          <Route path="vendors" element={<VendorApproval />} />
+          <Route path="categories" element={<CategoryManagement />} />
+        </Route>
 
         {/* Vendor Routes */}
         <Route path="/login/vendor" element={<VendorLogin />} />
@@ -62,8 +68,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/dashboard/user/profile" element={<UserProfile />} />
-
       </Routes>
     </Router>
   );
