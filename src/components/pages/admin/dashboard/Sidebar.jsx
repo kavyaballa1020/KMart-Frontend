@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Users, ListOrdered, LayoutDashboard, Settings, Bell, LogOut } from 'lucide-react';
 import './Sidebar.css';
+import LogoutButton from '../../../common/logout';
+
 
 const Sidebar = () => {
   const location = useLocation();
@@ -78,9 +80,9 @@ const Sidebar = () => {
             <span className="user-role">System Admin</span>
           </div>
         </div>
-        <button className="logout-btn" title="Logout">
-          <LogOut size={18} />
-        </button>
+        <LogoutButton >
+  <LogOut size={18} />
+</LogoutButton>
       </div>
     </aside>
   );

@@ -1,0 +1,33 @@
+/* Admin Dashboard Container */
+.admin-dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Content Area (right side of sidebar) */
+.main-content {
+    flex: 1;
+    background-color: #f9fafb;
+    overflow-y: auto;
+    padding: 1rem;
+    /* You can reduce this if you want tighter spacing */
+    margin: 0;
+}
+
+/* Optional: Remove if you're seeing extra space due to default styles */
+main,
+section,
+div {
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 0.5rem;
+    }
+}

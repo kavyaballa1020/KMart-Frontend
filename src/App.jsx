@@ -15,22 +15,35 @@ import UserDashboard from './components/pages/user/dashboard/UserDashboard.jsx';
 import AdminDashboard from './components/pages/admin/dashboard/AdminDashboard.jsx';
 import VendorDashboard from './components/pages/vendor/dashboard/VendorDashboard.jsx';
 
+// Admin Subpages
+import VendorApproval from './components/pages/admin/dashboard/VendorApproval.jsx';
+import CategoryManagement from './components/pages/admin/dashboard/CategoryManagement.jsx';
+
+// User Subpages
+import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
+// Other Components
 import Home from './components/Home.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
-import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
-import VendorApproval from './components/pages/admin/dashboard/VendorApproval.jsx';
-import CategoryManagement from './components/pages/admin/dashboard/CategoryManagement.jsx'; // Uncomment when ready
+import LoginRoute from './components/common/LoginRoute.jsx';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Home */}
+        {/* Home */}
         <Route path="/" element={<Home />} />
 
-        {/* User Routes */}
-        <Route path="/login/user" element={<UserLogin />} />
+        {/* Login Routes */}
+        <Route path="/login/user" element={<LoginRoute><UserLogin /></LoginRoute>} />
+        <Route path="/login/admin" element={<LoginRoute><AdminLogin /></LoginRoute>} />
+        <Route path="/login/vendor" element={<LoginRoute><VendorLogin /></LoginRoute>} />
+
+        {/* Register Routes */}
         <Route path="/register/user" element={<UserRegister />} />
+        <Route path="/register/admin" element={<AdminRegister />} />
+        <Route path="/register/vendor" element={<VendorRegister />} />
+
+        {/* User Dashboard with Nested Routes */}
         <Route
           path="/dashboard/user"
           element={
@@ -38,12 +51,11 @@ function App() {
               <UserDashboard />
             </ProtectedRoute>
           }
-        />
-        <Route path="/dashboard/user/profile" element={<UserProfile />} />
+        >
+          <Route path="profile" element={<UserProfile />} />
+        </Route>
 
-        {/* Admin Routes */}
-        <Route path="/login/admin" element={<AdminLogin />} />
-        <Route path="/register/admin" element={<AdminRegister />} />
+        {/* Admin Dashboard with Nested Routes */}
         <Route
           path="/dashboard/admin"
           element={
@@ -52,14 +64,11 @@ function App() {
             </ProtectedRoute>
           }
         >
-          {/* Nested Routes inside Admin Dashboard */}
           <Route path="vendors" element={<VendorApproval />} />
           <Route path="categories" element={<CategoryManagement />} />
         </Route>
 
-        {/* Vendor Routes */}
-        <Route path="/login/vendor" element={<VendorLogin />} />
-        <Route path="/register/vendor" element={<VendorRegister />} />
+        {/* Vendor Dashboard */}
         <Route
           path="/dashboard/vendor"
           element={

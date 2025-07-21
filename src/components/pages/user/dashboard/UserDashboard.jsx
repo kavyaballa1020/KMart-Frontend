@@ -1,14 +1,16 @@
-import { Link } from 'react-router-dom';
-import './UserDashboard.css'; // ✅ Import the CSS
+import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import './UserDashboard.css';
 
 function UserDashboard() {
   return (
-    <div className="dashboard-container">
-      <h1>Welcome to User Dashboard</h1>
-      <Link to="/dashboard/user/profile">
-        <button>View Profile</button>
-      </Link>
-      <br />
+    <div className="dashboard-layout">
+      <Sidebar />
+      <div className="main-content">
+        <div className="dashboard-container">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }

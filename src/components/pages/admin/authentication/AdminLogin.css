@@ -1,53 +1,340 @@
-/* AdminLogin.css */
+/* Modern Admin Login CSS */
 
+/* Main Container - Full viewport with gradient background */
+.admin-login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 2rem 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Login Card Container */
 .admin-login-container {
     width: 100%;
-    max-width: 420px;
-    margin: 100px auto;
-    padding: 40px 30px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 28rem;
+}
+
+/* Main Login Card */
+.admin-login-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+/* Header Section with Gradient */
+.admin-login-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 3rem 2rem;
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.admin-login-container h2 {
-    font-size: 26px;
-    margin-bottom: 20px;
-    color: #2c3e50;
+/* Lock Icon Container */
+.admin-login-icon {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    backdrop-filter: blur(10px);
 }
 
-.admin-login-container input {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
-    font-size: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.admin-login-container input:focus {
-    border-color: #007bff;
-}
-
-.admin-login-container button {
-    width: 95%;
-    padding: 12px;
-    background-color: #007bff;
+.admin-login-icon svg {
+    width: 2rem;
+    height: 2rem;
     color: white;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    stroke-width: 2;
+    fill: none;
+    stroke: currentColor;
 }
 
-.admin-login-container button:hover {
-    background-color: #0056b3;
-    transform: scale(1.02);
+/* Header Title */
+.admin-login-title {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: -0.025em;
+}
+
+/* Header Subtitle */
+.admin-login-subtitle {
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Form Content Area */
+.admin-login-content {
+    padding: 2rem;
+}
+
+/* Form Fields Container */
+.admin-login-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Field Group */
+.admin-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Field Labels */
+.admin-field-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin: 0;
+}
+
+/* Input Container with Icon */
+.admin-input-container {
+    position: relative;
+}
+
+.admin-input-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #9ca3af;
+    pointer-events: none;
+    stroke-width: 2;
+    fill: none;
+    stroke: currentColor;
+}
+
+/* Input Fields */
+.admin-login-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #1f2937;
+    background-color: #f8fafc;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.admin-login-input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+.admin-login-input:focus {
+    border-color: #475569;
+    box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.1);
+    background-color: white;
+}
+
+/* Login Button */
+.admin-login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    letter-spacing: 0.025em;
+    gap: 0.5rem;
+}
+
+.admin-login-button:hover:not(:disabled) {
+    background-color: #0f172a;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(30, 41, 59, 0.25);
+}
+
+.admin-login-button:active:not(:disabled) {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 4px 6px -1px rgba(30, 41, 59, 0.25);
+}
+
+.admin-login-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.3);
+}
+
+.admin-login-button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button Icons */
+.admin-button-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+    fill: none;
+    stroke: currentColor;
+}
+
+/* Loading Spinner */
+.admin-loading-spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    margin-left: -0.25rem;
+    animation: spin 1s linear infinite;
+}
+
+.admin-loading-spinner circle {
+    opacity: 0.25;
+    stroke-width: 4;
+    stroke: currentColor;
+    fill: none;
+}
+
+.admin-loading-spinner path {
+    opacity: 0.75;
+    fill: currentColor;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer Text */
+.admin-login-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.admin-footer-text {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Help Text Below Card */
+.admin-help-text {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.admin-help-text p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 28rem) {
+    .admin-login-wrapper {
+        padding: 1rem;
+    }
+
+    .admin-login-header {
+        padding: 2rem 1.5rem;
+    }
+
+    .admin-login-content {
+        padding: 1.5rem;
+    }
+
+    .admin-login-title {
+        font-size: 1.5rem;
+    }
+
+    .admin-login-input,
+    .admin-login-button {
+        padding: 1rem 1rem 1rem 2.75rem;
+        font-size: 1rem;
+    }
+
+    .admin-login-button {
+        padding: 1rem;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .admin-login-input,
+    .admin-login-button,
+    .admin-loading-spinner {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .admin-login-card {
+        border: 2px solid #000000;
+    }
+
+    .admin-login-input {
+        border: 2px solid #000000;
+    }
+
+    .admin-login-button {
+        border: 2px solid #000000;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .admin-login-wrapper {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .admin-login-card {
+        background: #1e293b;
+        border-color: #475569;
+    }
+
+    .admin-field-label {
+        color: #e2e8f0;
+    }
+
+    .admin-login-input {
+        background-color: #334155;
+        border-color: #475569;
+        color: #e2e8f0;
+    }
+
+    .admin-login-input:focus {
+        background-color: #475569;
+        border-color: #64748b;
+    }
+
+    .admin-footer-text,
+    .admin-help-text p {
+        color: #94a3b8;
+    }
 }

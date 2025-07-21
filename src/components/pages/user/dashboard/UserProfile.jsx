@@ -72,17 +72,17 @@ function UserProfile() {
       <h2>User Profile</h2>
       <div className="profile-flex">
         <div className="profile-picture">
-          {preview && <img src={preview} alt="Profile" />}
-          {editMode && (
-            <>
-              <label className="custom-file-upload">
-  <input type="file" onChange={handleFileChange} />
-  Choose Profile Picture
-</label>
+  {preview && <img src={preview} alt="Profile" />}
+  {editMode && (
+    <>
+      <label className="custom-file-upload">
+        <input type="file" onChange={handleFileChange} />
+        Choose Profile Picture
+      </label>
+    </>
+  )}
+</div>
 
-            </>
-          )}
-        </div>
 
         <div className="profile-info">
           {editMode ? (

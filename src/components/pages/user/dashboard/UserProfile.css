@@ -1,133 +1,208 @@
+/* UserProfile.css - Simple Formal Design */
+
+.profile-container {
+    max-width: 800px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background-color: #f8fafc;
+    min-height: auto;
+}
+
+.profile-container h2 {
+    text-align: center;
+    color: #1e293b;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.profile-flex {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    box-shadow: 0 1px 3px rgba(30, 41, 59, 0.1);
+}
+
+.profile-picture {
+    flex-shrink: 0;
+    text-align: center;
+    display: flex;
+    /* Add this */
+    flex-direction: column;
+    /* Add this */
+    align-items: center;
+    /* Add this */
+}
+
+.profile-picture img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1e293b;
+    background-color: #f8fafc;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: #1e293b;
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+    transition: background-color 0.2s ease;
+    border: none;
+    text-transform: none;
+}
+
+.custom-file-upload:hover {
+    background-color: #334155;
+}
+
+.custom-file-upload input[type=file] {
+    display: none;
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-info input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    background: white;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+    color: #1e293b;
+}
+
+.profile-info input:focus {
+    outline: none;
+    border-color: #1e293b;
+    box-shadow: 0 0 0 2px rgba(30, 41, 59, 0.1);
+}
+
+.profile-info input::placeholder {
+    color: #9ca3af;
+}
+
+.profile-info p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f9fafb;
+    border-radius: 4px;
+    border: 1px solid #f3f4f6;
+}
+
+.profile-info p strong {
+    color: #1e293b;
+    font-weight: 600;
+    min-width: 120px;
+    margin-right: 1rem;
+    font-size: 0.875rem;
+}
+
+/* Button Styles */
+.update-btn,
+.cancel-btn,
+.edit-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+    text-transform: none;
+}
+
+.update-btn {
+    background-color: #1e293b;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #334155;
+}
+
+.cancel-btn {
+    background-color: #6b7280;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #4b5563;
+}
+
+.edit-btn {
+    background-color: #1e293b;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #334155;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
     .profile-container {
-        max-width: 700px;
-        margin: 50px auto;
-        padding: 30px;
-        background: #f9f9f9;
-        border-radius: 16px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        font-family: 'Segoe UI', sans-serif;
+        margin: 1rem auto;
+        padding: 0 0.75rem;
     }
 
     .profile-container h2 {
-        text-align: center;
-        color: #222;
-        margin-bottom: 30px;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
     .profile-flex {
-        display: flex;
-        align-items: flex-start;
-        gap: 30px;
-    }
-
-    .profile-picture {
-        display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 160px;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        text-align: center;
     }
 
     .profile-picture img {
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        margin-bottom: 15px;
-        border: 3px solid #007bff;
-        transition: transform 0.3s ease;
-    }
-
-    .profile-picture img:hover {
-        transform: scale(1.05);
-    }
-
-    .profile-picture input[type="file"] {
-        margin-bottom: 10px;
-    }
-
-    .profile-info {
-        flex: 1;
+        width: 100px;
+        height: 100px;
     }
 
     .profile-info p {
-        margin-bottom: 15px;
-        font-size: 1rem;
+        flex-direction: column;
+        text-align: left;
+        gap: 0.25rem;
     }
 
-    input[type="text"] {
+    .profile-info p strong {
+        min-width: auto;
+        margin-right: 0;
+    }
+
+    .update-btn,
+    .cancel-btn,
+    .edit-btn {
         width: 100%;
-        padding: 12px;
-        margin-bottom: 15px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-        background-color: #fff;
-        box-sizing: border-box;
-        transition: border 0.2s ease;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
     }
-
-    input[type="text"]:focus {
-        outline: none;
-        border-color: #007bff;
-    }
-
-    button {
-        width: 100%;
-        padding: 12px;
-        margin-top: 8px;
-        border: none;
-        border-radius: 10px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    button:hover {
-        opacity: 0.95;
-    }
-
-    .upload-btn {
-        background-color: #17a2b8;
-        color: #fff;
-    }
-
-    .update-btn {
-        background-color: #007bff;
-        color: #fff;
-    }
-        .edit-btn {
-            background-color: #17a2b8;
-            color: #fff;
-        }
-    
-        .cancel-btn {
-            background-color: #dc3545;
-            color: #fff;
-            margin-top: 8px;
-        }
-    
-        .update-btn {
-            background-color: #007bff;
-            color: #fff;
-            margin-top: 8px;
-        }
-                .custom-file-upload {
-                    display: inline-block;
-                    padding: 10px 16px;
-                    background-color: #28a745;
-                    color: white;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-weight: 500;
-                    font-size: 14px;
-                    margin-top: 10px;
-                    transition: background-color 0.3s ease;
-                }
-        
-                .custom-file-upload:hover {
-                    background-color: #218838;
-                }
-        
-                .custom-file-upload input[type="file"] {
-                    display: none;
-                }
+}

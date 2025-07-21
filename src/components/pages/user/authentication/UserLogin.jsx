@@ -8,6 +8,8 @@ function UserLogin() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberDevice, setRememberDevice] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,18 +22,21 @@ function UserLogin() {
   }, [navigate]);
 
   const login = async () => {
-    try {
-      const res = await axios.post('http://localhost:8081/api/users/login', {
-        email,
-        password
-      });
+     setIsLoading(true); // start loading
+  try {
+    const res = await axios.post('http://localhost:8081/api/users/login', {
+      email,
+      password,
+    });
 
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('role', 'ROLE_USER');
-      navigate('/dashboard/user', { replace: true });
-    } catch (err) {
-      alert('Invalid user credentials');
-    }
+    localStorage.setItem('token', res.data.token);
+    localStorage.setItem('role', 'ROLE_USER');
+    navigate('/dashboard/user', { replace: true });
+  } catch (err) {
+    alert('Invalid credentials');
+  } finally {
+    setIsLoading(false); // stop loading regardless of success or error
+  }
   };
 
   const handleKeyPress = (e) => {
@@ -120,9 +125,14 @@ function UserLogin() {
               <label htmlFor="remember">Keep me signed in</label>
             </div>
 
-            <button className="user-login-btn" onClick={login}>
-              Sign In
-            </button>
+           <button
+  className="user-login-btn"
+  onClick={login}
+  disabled={!email || !password || isLoading}
+>
+  {isLoading ? 'Signing in...' : 'Sign In'}
+</button>
+
 
             <div className="user-login-forgot">
               <a href="/forgot-password">Forgot your password?</a>

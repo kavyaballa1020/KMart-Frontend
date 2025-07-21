@@ -25,7 +25,7 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(90deg, #313946, #1d4ed8);
     border-radius: 2px;
 }
 
@@ -42,7 +42,7 @@
 .vendor-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid #303d4f;
     padding: 1.25rem 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);

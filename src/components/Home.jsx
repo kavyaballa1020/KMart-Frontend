@@ -1,7 +1,35 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import './Home.css';
 
 function Home() {
+  const navigate = useNavigate();
+  const [role, setRole] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login state from localStorage
+  useEffect(() => {
+    const savedRole = localStorage.getItem('role');
+    const token = localStorage.getItem('token');
+    if (savedRole && token) {
+      setRole(savedRole);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    setIsLoggedIn(false);
+    setRole(null);
+    navigate('/');
+  };
+  const getDashboardPath = () => {
+    if (role === "ROLE_USER") return "/dashboard/user";
+    if (role === "ROLE_ADMIN") return "/dashboard/admin";
+    if (role === "ROLE_VENDOR") return "/dashboard/vendor";
+    return "/"; // default fallback
+  };
   return (
     <div className="home-page">
       {/* Navigation Bar */}
@@ -12,7 +40,7 @@ function Home() {
               <span className="logo-text">KMart</span>
             </Link>
           </div>
-          
+
           <div className="nav-menu">
             <Link to="/products" className="nav-link">Products</Link>
             <Link to="/categories" className="nav-link">Categories</Link>
@@ -21,8 +49,17 @@ function Home() {
           </div>
 
           <div className="nav-auth">
-            <Link to="/login/user" className="auth-btn login-btn">Login</Link>
-            <Link to="/login/vendor" className="auth-btn seller-btn">Become a Seller</Link>
+            {!isLoggedIn ? (
+              <>
+                <Link to="/login/user" className="auth-btn login-btn">Login</Link>
+                <Link to="/login/vendor" className="auth-btn seller-btn">Become a Seller</Link>
+              </>
+            ) : (
+              <>
+                <Link to={getDashboardPath()} className="auth-btn dashboard-btn">Account</Link>
+                <button onClick={handleLogout} className="auth-btn logout-btn">Logout</button>
+              </>
+            )}
           </div>
         </div>
       </nav>
