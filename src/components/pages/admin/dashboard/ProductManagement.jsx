@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './ProductManagement.css';
 
@@ -9,50 +9,62 @@ const ProductManagement = () => {
     price: '',
     quantity: '',
     subCategoryId: '',
-    image: null
+    image: null,
   });
 
+  const [editProductId, setEditProductId] = useState(null);
   const [subCategories, setSubCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
+  // Ref for the form section to scroll into view
+  const formRef = useRef(null);
+
   useEffect(() => {
-    const fetchSubCategories = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8082/api/subcategories', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setSubCategories(response.data);
-      } catch (error) {
-        console.error('Failed to fetch subcategories:', error);
-      }
-    };
-
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8083/api/products', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchSubCategories();
     fetchProducts();
   }, []);
+
+  const fetchSubCategories = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:8082/api/subcategories', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setSubCategories(response.data);
+    } catch (error) {
+      console.error('Failed to fetch subcategories:', error);
+    }
+  };
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:8083/api/products', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetForm = () => {
+    setProduct({
+      name: '',
+      description: '',
+      price: '',
+      quantity: '',
+      subCategoryId: '',
+      image: null,
+    });
+    setEditProductId(null);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,7 +78,7 @@ const ProductManagement = () => {
     setProduct({ ...product, image: e.target.files[0] });
   };
 
-  const handleAddProduct = async () => {
+  const handleSubmit = async () => {
     if (!product.name || !product.price || !product.quantity || !product.subCategoryId) {
       alert('Please fill in all required fields');
       return;
@@ -93,33 +105,71 @@ const ProductManagement = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post(
-        'http://localhost:8083/api/products',
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
+      if (editProductId) {
+        await axios.put(
+          `http://localhost:8083/api/products/${editProductId}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            }
           }
-        }
-      );
+        );
+        alert('Product updated successfully!');
+      } else {
+        const response = await axios.post(
+          'http://localhost:8083/api/products',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        );
+        setProducts((prev) => [...prev, response.data]);
+        alert('Product added successfully!');
+      }
 
-      alert('Product added successfully!');
-      setProducts((prev) => [...prev, response.data]);
-
-      setProduct({
-        name: '',
-        description: '',
-        price: '',
-        quantity: '',
-        subCategoryId: '',
-        image: null
-      });
+      fetchProducts();
+      resetForm();
     } catch (error) {
-      console.error('Failed to add product:', error);
-      alert('Error adding product.');
+      console.error('Failed to submit product:', error);
+      alert('Error submitting product.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleEditProduct = (prod) => {
+    setProduct({
+      name: prod.name,
+      description: prod.description,
+      price: prod.price,
+      quantity: prod.quantity,
+      subCategoryId: prod.subCategoryId,
+      image: null
+    });
+    setEditProductId(prod.id);
+    formRef.current?.scrollIntoView({ behavior: 'smooth' }); // Scroll to form
+  };
+
+  const handleDeleteProduct = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this product?");
+    if (!confirmed) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:8083/api/products/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+      alert("Product deleted successfully.");
+    } catch (error) {
+      console.error("Failed to delete product:", error);
+      alert("Error deleting product.");
     }
   };
 
@@ -138,11 +188,10 @@ const ProductManagement = () => {
           <p className="subtitle">Add and manage your products efficiently</p>
         </div>
 
-        {/* Add Product Form */}
-        <div className="form-section">
+        {/* Add/Edit Product Form */}
+        <div className="form-section" ref={formRef}>
           <div className="form-header">
-            <h2>Add New Product</h2>
-            <div className="form-icon">+</div>
+            <h2>{editProductId ? "Edit Product" : "Add New Product"}</h2>
           </div>
 
           <div className="form-grid">
@@ -151,7 +200,6 @@ const ProductManagement = () => {
               <input
                 type="text"
                 name="name"
-                placeholder="Enter product name"
                 value={product.name}
                 onChange={handleChange}
                 className="form-input"
@@ -163,7 +211,6 @@ const ProductManagement = () => {
               <input
                 type="number"
                 name="price"
-                placeholder="0.00"
                 value={product.price}
                 onChange={handleChange}
                 className="form-input"
@@ -175,7 +222,6 @@ const ProductManagement = () => {
               <input
                 type="number"
                 name="quantity"
-                placeholder="0"
                 value={product.quantity}
                 onChange={handleChange}
                 className="form-input"
@@ -214,7 +260,6 @@ const ProductManagement = () => {
               <label>Description</label>
               <textarea
                 name="description"
-                placeholder="Enter product description"
                 value={product.description}
                 onChange={handleChange}
                 className="form-textarea"
@@ -223,31 +268,35 @@ const ProductManagement = () => {
             </div>
           </div>
 
-          <button
-            onClick={handleAddProduct}
-            className="add-btn"
-            disabled={loading}
-          >
-            {loading ? 'Adding...' : 'Add Product'}
-          </button>
+          <div className="form-actions">
+            <button
+              onClick={handleSubmit}
+              className="add-btn"
+              disabled={loading}
+            >
+              {loading ? (editProductId ? "Updating..." : "Adding...") : (editProductId ? "Update Product" : "Add Product")}
+            </button>
+
+            {editProductId && (
+              <button className="cancel-btn" onClick={resetForm}>
+                Cancel Edit
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Products List */}
         <div className="products-section">
           <div className="products-header">
             <h2>Products ({products.length})</h2>
-
             <div className="filters">
-              <div className="search-box">
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="search-input"
-                />
-              </div>
-
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
@@ -281,25 +330,16 @@ const ProductManagement = () => {
                       alt={prod.name}
                     />
                   </div>
-
                   <div className="product-content">
                     <h3 className="product-name">{prod.name}</h3>
                     <p className="product-description">{prod.description}</p>
-
                     <div className="product-details">
-                      <div className="price-tag">
-                        <span className="currency">₹</span>
-                        <span className="price">{prod.price}</span>
-                      </div>
-
-                      <div className="quantity-badge">
-                        Stock: {prod.quantity}
-                      </div>
+                      <div className="price-tag">₹{prod.price}</div>
+                      <div className="quantity-badge">Stock: {prod.quantity}</div>
                     </div>
-
                     <div className="product-actions">
-                      <button className="edit-btn">Edit</button>
-                      <button className="delete-btn">Delete</button>
+                      <button className="edit-btn" onClick={() => handleEditProduct(prod)}>Edit</button>
+                      <button className="delete-btn" onClick={() => handleDeleteProduct(prod.id)}>Delete</button>
                     </div>
                   </div>
                 </div>
