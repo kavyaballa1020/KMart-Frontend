@@ -13,6 +13,7 @@ const Sidebar = () => {
     { path: '/dashboard/admin', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/dashboard/admin/vendors', icon: Users, label: 'Vendor Management' },
     { path: '/dashboard/admin/categories', icon: ListOrdered, label: 'Category Management' },
+    { path: '/dashboard/admin/products', icon: ListOrdered, label: 'Product Management' },
     { path: '/dashboard/admin/settings', icon: Settings, label: 'System Settings' },
     { path: '/dashboard/admin/notifications', icon: Bell, label: 'Notifications' },
   ];
@@ -45,7 +46,7 @@ const Sidebar = () => {
 
         <div className="nav-section">
           <span className="nav-section-title">Management</span>
-          {menuItems.slice(1, 3).map(({ path, icon: Icon, label }) => (
+          {menuItems.slice(1, 4).map(({ path, icon: Icon, label }) => (
             <Link
               key={path}
               to={path}
@@ -59,7 +60,7 @@ const Sidebar = () => {
 
         <div className="nav-section">
           <span className="nav-section-title">System</span>
-          {menuItems.slice(3).map(({ path, icon: Icon, label }) => (
+          {menuItems.slice(4).map(({ path, icon: Icon, label }) => (
             <Link
               key={path}
               to={path}

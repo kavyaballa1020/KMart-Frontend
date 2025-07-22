@@ -18,6 +18,7 @@ import VendorDashboard from './components/pages/vendor/dashboard/VendorDashboard
 // Admin Subpages
 import VendorApproval from './components/pages/admin/dashboard/VendorApproval.jsx';
 import CategoryManagement from './components/pages/admin/dashboard/CategoryManagement.jsx';
+import ProductManagement from './components/pages/admin/dashboard/ProductManagement.jsx';
 
 // User Subpages
 import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
@@ -25,6 +26,7 @@ import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
 import Home from './components/Home.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import LoginRoute from './components/common/LoginRoute.jsx';
+
 
 function App() {
   return (
@@ -66,6 +68,8 @@ function App() {
         >
           <Route path="vendors" element={<VendorApproval />} />
           <Route path="categories" element={<CategoryManagement />} />
+          <Route path="products" element={<ProductManagement />} />
+
         </Route>
 
         {/* Vendor Dashboard */}
