@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './Home.css';
+import ProductList from './ProductList';
 
 function Home() {
   const navigate = useNavigate();
   const [role, setRole] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Check login state from localStorage
   useEffect(() => {
     const savedRole = localStorage.getItem('role');
     const token = localStorage.getItem('token');
@@ -24,12 +24,14 @@ function Home() {
     setRole(null);
     navigate('/');
   };
+
   const getDashboardPath = () => {
     if (role === "ROLE_USER") return "/dashboard/user";
     if (role === "ROLE_ADMIN") return "/dashboard/admin";
     if (role === "ROLE_VENDOR") return "/dashboard/vendor";
-    return "/"; // default fallback
+    return "/";
   };
+
   return (
     <div className="home-page">
       {/* Navigation Bar */}
@@ -81,31 +83,12 @@ function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="features-section">
+     
+
+      {/* ✅ Product List Section on Home */}
+      <section className="home-product-list-section">
         <div className="container">
-          <h2 className="section-title">Why Choose KMart?</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">🛍️</div>
-              <h3>Wide Selection</h3>
-              <p>Browse thousands of products across multiple categories from electronics to fashion</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🚚</div>
-              <h3>Fast Delivery</h3>
-              <p>Get your orders delivered quickly with our reliable shipping partners</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🔒</div>
-              <h3>Secure Shopping</h3>
-              <p>Shop with confidence using our secure payment gateway and buyer protection</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">💼</div>
-              <h3>Sell with Us</h3>
-              <p>Join our marketplace as a vendor and reach millions of customers nationwide</p>
-            </div>
-          </div>
+          <ProductList />
         </div>
       </section>
 
