@@ -26,8 +26,7 @@ import UserProfile from './components/pages/user/dashboard/UserProfile.jsx';
 import Home from './components/Home.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import LoginRoute from './components/common/LoginRoute.jsx';
-
-
+import ProductList from './components/ProductList.jsx';
 function App() {
   return (
     <Router>
@@ -81,6 +80,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/products" element={<ProductList />} />
       </Routes>
     </Router>
   );
