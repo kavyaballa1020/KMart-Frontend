@@ -49,7 +49,11 @@ function Home() {
             <Link to="/about" className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
           </div>
-
+          <div className="nav-right">
+  <Link to="/cart" className="cart-icon">
+    🛒
+  </Link>
+  </div>
           <div className="nav-auth">
             {!isLoggedIn ? (
               <>

@@ -203,8 +203,22 @@
     color: white;
 }
 
-/* Features Section */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
+.cart-icon {
+    font-size: 1.8rem;
+    color: #333;
+    text-decoration: none;
+    position: relative;
+}
+
+.cart-icon:hover {
+    color: #ff6600;
+}
 /* CTA Section */
 .cta-section {
     background: #1f2937;

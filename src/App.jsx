@@ -27,6 +27,11 @@ import Home from './components/Home.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import LoginRoute from './components/common/LoginRoute.jsx';
 import ProductList from './components/ProductList.jsx';
+import Cart from './components/Cart.jsx';
+import AddressPage from './components/Address/AddressPage.jsx';
+import TestMap from './components/TestMap';
+
+
 function App() {
   return (
     <Router>
@@ -81,6 +86,10 @@ function App() {
           }
         />
         <Route path="/products" element={<ProductList />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/address" element={<AddressPage />} />
+        <Route path="/test-map" element={<TestMap />} />
+
       </Routes>
     </Router>
   );

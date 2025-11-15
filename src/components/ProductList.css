@@ -21,7 +21,6 @@
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    /* smaller min size */
     gap: 24px;
 }
 
@@ -34,8 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 350px;
-    /* Reduced height */
+    min-height: 380px;
     box-shadow: 0 2px 4px rgba(30, 41, 59, 0.05);
 }
 
@@ -50,12 +48,10 @@
     object-fit: contain;
     background-color: #f1f5f9;
     padding: 6px;
-    /* smaller padding */
 }
 
 .product-name {
     font-size: 1rem;
-    /* smaller font */
     font-weight: 600;
     color: #1e293b;
     text-align: center;
@@ -77,19 +73,87 @@
     color: #1e293b;
     margin: 10px 0;
 }
+/* Button Group CSS */
+/* Button Group CSS */
+
+.button-group {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.view-details-btn,
+.add-to-cart-btn {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.025em;
+    font-family: inherit;
+    min-height: 36px;
+}
 
 .view-details-btn {
-    background-color: #1e293b;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 8px 14px;
-    /* smaller button */
-    border-radius: 6px;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: transparent;
+    color: #1e293b;
+    border: 2px solid #1e293b;
 }
 
 .view-details-btn:hover {
+    background-color: #1e293b;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(30, 41, 59, 0.2);
+}
+
+.add-to-cart-btn {
+    background-color: #1e293b;
+    color: white;
+    border: 2px solid #1e293b;
+}
+
+.add-to-cart-btn:hover {
     background-color: #334155;
+    border-color: #334155;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(30, 41, 59, 0.2);
+}
+
+.view-details-btn:active,
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .view-details-btn,
+    .add-to-cart-btn {
+        padding: 0.6rem 0.75rem;
+        min-height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .view-details-btn,
+    .add-to-cart-btn {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.85rem;
+        min-height: 42px;
+    }
 }

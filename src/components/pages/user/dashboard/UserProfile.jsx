@@ -14,19 +14,22 @@ function UserProfile() {
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const token = localStorage.getItem('token');
+
+  const storedToken = localStorage.getItem('token')?.trim();
+  const token = storedToken?.startsWith('Bearer ') ? storedToken : `Bearer ${storedToken}`;
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const res = await axios.get('http://localhost:8081/api/users/me', {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: token }
         });
         setUser(res.data);
         if (res.data.profilePicture) {
           setPreview(`data:image/jpeg;base64,${res.data.profilePicture}`);
         }
-      } catch {
+      } catch (err) {
+        console.error('Profile load error:', err);
         alert('Failed to load user profile');
       }
     };
@@ -46,7 +49,7 @@ function UserProfile() {
   const handleUpdate = async () => {
     try {
       await axios.put('http://localhost:8081/api/users/update', user, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: token }
       });
 
       if (file) {
@@ -54,7 +57,7 @@ function UserProfile() {
         formData.append('file', file);
         await axios.put('http://localhost:8081/api/users/upload-picture', formData, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
             'Content-Type': 'multipart/form-data'
           }
         });
@@ -62,7 +65,8 @@ function UserProfile() {
 
       alert('Profile updated successfully!');
       setEditMode(false);
-    } catch {
+    } catch (err) {
+      console.error('Profile update error:', err);
       alert('Failed to update profile');
     }
   };
@@ -72,17 +76,14 @@ function UserProfile() {
       <h2>User Profile</h2>
       <div className="profile-flex">
         <div className="profile-picture">
-  {preview && <img src={preview} alt="Profile" />}
-  {editMode && (
-    <>
-      <label className="custom-file-upload">
-        <input type="file" onChange={handleFileChange} />
-        Choose Profile Picture
-      </label>
-    </>
-  )}
-</div>
-
+          {preview && <img src={preview} alt="Profile" />}
+          {editMode && (
+            <label className="custom-file-upload">
+              <input type="file" onChange={handleFileChange} />
+              Choose Profile Picture
+            </label>
+          )}
+        </div>
 
         <div className="profile-info">
           {editMode ? (
